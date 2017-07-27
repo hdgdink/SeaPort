@@ -6,10 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Multithreading" />
         <module name="SeaPort" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Multithreading" target="1.7" />
       <module name="SeaPort" target="1.5" />
     </bytecodeTargetLevel>
   </component>

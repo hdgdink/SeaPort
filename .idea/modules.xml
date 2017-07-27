@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Multithreading.iml" filepath="$PROJECT_DIR$/Multithreading.iml" />
       <module fileurl="file://$PROJECT_DIR$/../JavaLab/SeaPort/SeaPort.iml" filepath="$PROJECT_DIR$/../JavaLab/SeaPort/SeaPort.iml" />
     </modules>
   </component>
