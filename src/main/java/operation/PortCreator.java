@@ -1,6 +1,5 @@
 package operation;
 
-
 import kz.javalab.entity.Pier;
 import kz.javalab.entity.SeaPort;
 
@@ -12,19 +11,19 @@ import java.util.concurrent.BlockingQueue;
  */
 public class PortCreator extends Thread {
     private final String NAME_OF_PORT = "LENIN'S PADDLES";
-    SeaPort seaPort = null;
-    Pier pierForBigShipFirst = null;
-    Pier pierForBigShipSecond = null;
-    Pier pierForMediumShipFirst = null;
-    Pier pierForMediumShipSecond = null;
-    Pier pierForBoardFirst = null;
-    Pier pierForBoardSecond = null;
+    private final int CAPACITY_OF_QUEUE = 2;
+    private SeaPort seaPort = null;
+    private Pier pierForBigShipFirst = null;
+    private Pier pierForBigShipSecond = null;
+    private Pier pierForMediumShipFirst = null;
+    private Pier pierForMediumShipSecond = null;
+    private Pier pierForBoardFirst = null;
+    private Pier pierForBoardSecond = null;
+    private ShipCreator creator = null;
+    private BlockingQueue<Pier> queueOfPiersForBigShips = new ArrayBlockingQueue<Pier>(CAPACITY_OF_QUEUE);
+    private BlockingQueue<Pier> queueOfPiersForMedShips = new ArrayBlockingQueue<Pier>(CAPACITY_OF_QUEUE);
+    private BlockingQueue<Pier> queueOfPiersForSmallShips = new ArrayBlockingQueue<Pier>(CAPACITY_OF_QUEUE);
 
-
-    BlockingQueue<Pier> queueOfPiersForBigShips = new ArrayBlockingQueue<Pier>(2);
-    BlockingQueue<Pier> queueOfPiersForMedShips = new ArrayBlockingQueue<Pier>(2);
-    BlockingQueue<Pier> queueOfPiersForSmallShips = new ArrayBlockingQueue<Pier>(2);
-    ShipCreator creator;
 
     public void run() {
         seaPort = new SeaPort();
@@ -36,10 +35,9 @@ public class PortCreator extends Thread {
         pierForBoardFirst = new Pier(1, true, 30, "For Boards");
         pierForBoardSecond = new Pier(2, true, 30, "For Boards");
 
-        queueOfPiersForBigShips.add(pierForBigShipFirst);
-        queueOfPiersForBigShips.add(pierForBigShipSecond);
         try {
-
+            queueOfPiersForBigShips.put(pierForBigShipFirst);
+            queueOfPiersForBigShips.put(pierForBigShipSecond);
             queueOfPiersForMedShips.put(pierForMediumShipFirst);
             queueOfPiersForMedShips.put(pierForMediumShipSecond);
             queueOfPiersForSmallShips.put(pierForBoardFirst);
@@ -49,11 +47,9 @@ public class PortCreator extends Thread {
         }
 
         System.out.println(seaPort.toString());
-
         creator = new ShipCreator(queueOfPiersForBigShips, queueOfPiersForMedShips, queueOfPiersForSmallShips);
         creator.start();
     }
-
 }
 
 

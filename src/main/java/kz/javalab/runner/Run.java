@@ -7,9 +7,7 @@ import operation.PortCreator;
  */
 public class Run {
     public static void main(String[] args) {
-
-        PortCreator portCreator = new PortCreator();
-        portCreator.start();
+        new PortCreator().start();
     }
 }
 

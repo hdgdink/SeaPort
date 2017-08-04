@@ -8,10 +8,6 @@ public class Ship {
     private String shipType;
     private int shipCapacity;
 
-    public  void createShip(){
-
-    }
-
     public Ship(String shipName, String shipType, int shipCapacity) {
         this.shipName = shipName;
         this.shipType = shipType;
@@ -30,10 +26,6 @@ public class Ship {
         return shipType;
     }
 
-    public void setShipType(String shipType) {
-        this.shipType = shipType;
-    }
-
     public int getShipCapacity() {
         return shipCapacity;
     }
@@ -44,10 +36,6 @@ public class Ship {
 
     @Override
     public String toString() {
-        return "Ship{" +
-                "shipName='" + shipName + '\'' +
-                ", shipType='" + shipType + '\'' +
-                ", shipCapacity=" + shipCapacity +
-                '}';
+        return "shipName: " + shipName + " shipType: " + shipType + " shipCapacity: " + shipCapacity;
     }
 }

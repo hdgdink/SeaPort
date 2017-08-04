@@ -7,13 +7,13 @@ public class Pier {
 
     private int pierId;
     private boolean isEmpty;
-    private int unloadSpeed;
+    private int speedOfUnloading;
     private String pierType;
 
-    public Pier(int pierId, boolean isEmpty, int unloadSpeed, String pierType) {
+    public Pier(int pierId, boolean isEmpty, int speedOfUnloading, String pierType) {
         this.pierId = pierId;
         this.isEmpty = isEmpty;
-        this.unloadSpeed = unloadSpeed;
+        this.speedOfUnloading = speedOfUnloading;
         this.pierType = pierType;
     }
 
@@ -35,12 +35,12 @@ public class Pier {
         isEmpty = empty;
     }
 
-    public int getUnloadSpeed() {
-        return unloadSpeed;
+    public int getSpeedOfUnloading() {
+        return speedOfUnloading;
     }
 
-    public void setUnloadSpeed(int unloadSpeed) {
-        this.unloadSpeed = unloadSpeed;
+    public void setSpeedOfUnloading(int speedOfUnloading) {
+        this.speedOfUnloading = speedOfUnloading;
     }
 
     public String getPierType() {
