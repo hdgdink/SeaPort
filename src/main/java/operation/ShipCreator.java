@@ -1,6 +1,5 @@
 package operation;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import kz.javalab.entity.Pier;
 import kz.javalab.entity.Ship;
 
@@ -18,15 +17,15 @@ public class ShipCreator extends Thread {
     private final String SMALL = "Small";
     private int maxForString;
     private int typeRnd;
-    private List<String> listRnd;
+    private List<String> listRnd = null;
     private int max;
     private int rnd;
-    private Ship ship;
+    private Ship ship = null;
     private int quantityOfShips;
     private BlockingQueue<Ship> queueOfShips = null;
-    private BlockingQueue<Pier> queueOfPiersForBigShips;
-    private BlockingQueue<Pier> queueOfPiersForSmallShips;
-    private BlockingQueue<Pier> queueOfPiersForMedShips;
+    private BlockingQueue<Pier> queueOfPiersForBigShips = null;
+    private BlockingQueue<Pier> queueOfPiersForSmallShips = null;
+    private BlockingQueue<Pier> queueOfPiersForMedShips = null;
 
 
     @Override

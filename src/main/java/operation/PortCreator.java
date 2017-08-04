@@ -20,13 +20,16 @@ public class PortCreator extends Thread {
     private Pier pierForBoardFirst = null;
     private Pier pierForBoardSecond = null;
     private ShipCreator creator = null;
-    private BlockingQueue<Pier> queueOfPiersForBigShips = new ArrayBlockingQueue<Pier>(CAPACITY_OF_QUEUE);
-    private BlockingQueue<Pier> queueOfPiersForMedShips = new ArrayBlockingQueue<Pier>(CAPACITY_OF_QUEUE);
-    private BlockingQueue<Pier> queueOfPiersForSmallShips = new ArrayBlockingQueue<Pier>(CAPACITY_OF_QUEUE);
+    private BlockingQueue<Pier> queueOfPiersForBigShips = null;
+    private BlockingQueue<Pier> queueOfPiersForMedShips = null;
+    private BlockingQueue<Pier> queueOfPiersForSmallShips = null;
 
 
     public void run() {
         seaPort = new SeaPort();
+        queueOfPiersForBigShips = new ArrayBlockingQueue<Pier>(CAPACITY_OF_QUEUE);
+        queueOfPiersForMedShips = new ArrayBlockingQueue<Pier>(CAPACITY_OF_QUEUE);
+        queueOfPiersForSmallShips = new ArrayBlockingQueue<Pier>(CAPACITY_OF_QUEUE);
         seaPort.setPortName(NAME_OF_PORT);
         pierForBigShipFirst = new Pier(1, true, 30, "For Big");
         pierForBigShipSecond = new Pier(2, true, 20, "For Big");
