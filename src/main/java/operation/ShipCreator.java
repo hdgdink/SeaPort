@@ -2,6 +2,7 @@ package operation;
 
 import kz.javalab.entity.Pier;
 import kz.javalab.entity.Ship;
+
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -12,8 +13,8 @@ public class ShipCreator extends Thread {
     private int max;
     private int rnd;
     Ship ship;
-    private int capacityOfQueue;
-    BlockingQueue<Ship> queueOfShips = new ArrayBlockingQueue<>(capacityOfQueue);
+    private int capacityOfQueue = 10;
+    BlockingQueue<Ship> queueOfShips = new ArrayBlockingQueue<Ship>(capacityOfQueue);
     private BlockingQueue<Pier> queueOfPiersForBigShips;
     private BlockingQueue<Pier> queueOfPiersForSmallShips;
     private BlockingQueue<Pier> queueOfPiersForMedShips;
@@ -22,8 +23,6 @@ public class ShipCreator extends Thread {
     @Override
     public void run() {
         max = 100;
-        capacityOfQueue = 10;
-
         for (int i = 0; i < capacityOfQueue; i++) {
             rnd = (int) (Math.random() * max);
             System.out.println("New Ship on horizont");

@@ -1,5 +1,6 @@
 package operation;
 
+
 import kz.javalab.entity.Pier;
 import kz.javalab.entity.SeaPort;
 
@@ -18,11 +19,12 @@ public class PortCreator extends Thread {
     Pier pierForMediumShipSecond = null;
     Pier pierForBoardFirst = null;
     Pier pierForBoardSecond = null;
+
+
     BlockingQueue<Pier> queueOfPiersForBigShips = new ArrayBlockingQueue<Pier>(2);
     BlockingQueue<Pier> queueOfPiersForMedShips = new ArrayBlockingQueue<Pier>(2);
     BlockingQueue<Pier> queueOfPiersForSmallShips = new ArrayBlockingQueue<Pier>(2);
     ShipCreator creator;
-
 
     public void run() {
         seaPort = new SeaPort();
@@ -37,6 +39,7 @@ public class PortCreator extends Thread {
         queueOfPiersForBigShips.add(pierForBigShipFirst);
         queueOfPiersForBigShips.add(pierForBigShipSecond);
         try {
+
             queueOfPiersForMedShips.put(pierForMediumShipFirst);
             queueOfPiersForMedShips.put(pierForMediumShipSecond);
             queueOfPiersForSmallShips.put(pierForBoardFirst);
@@ -44,11 +47,13 @@ public class PortCreator extends Thread {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
         System.out.println(seaPort.toString());
 
         creator = new ShipCreator(queueOfPiersForBigShips, queueOfPiersForMedShips, queueOfPiersForSmallShips);
         creator.start();
     }
+
 }
 
 

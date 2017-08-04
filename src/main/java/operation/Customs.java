@@ -2,6 +2,7 @@ package operation;
 
 import kz.javalab.entity.Pier;
 import kz.javalab.entity.Ship;
+
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Semaphore;
 
@@ -20,23 +21,25 @@ public class Customs extends Thread {
 
     @Override
     public void run() {
-        currentShip = queueOfShips.poll();
-        currentPier = queueOfPiersForBigShips.peek();
-        System.out.println("Queue of ships = " + queueOfShips.size());
-        if (currentShip.getShipType() == "Big") {
-            if (currentPier.isEmpty() == true)
-                currentPier.setEmpty(false);
-            System.out.println("Unloading ...." + currentShip.getShipName() + " PierID" + currentPier.getPierId());
-            try {
-                Thread.sleep(2000);
+synchronized (this){
+            currentShip = queueOfShips.poll();
+            currentPier = queueOfPiersForBigShips.peek();
+            System.out.println("Queue of ships = " + queueOfShips.size());
+            if (currentShip.getShipType() == "Big") {
+                if (currentPier.isEmpty() == true)
+                    currentPier.setEmpty(false);
+                System.out.println("Unloading ...." + currentShip.getShipName() + " PierID" + currentPier.getPierId());
+                try {
+                    Thread.sleep(2000);
 
-                System.out.println("Unloaded " + currentShip.getShipName() + " on pierID " + currentPier.getPierId());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                    System.out.println("Unloaded " + currentShip.getShipName() + " on pierID " + currentPier.getPierId());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-
+            }
         }
-    }
+
 
     public Customs(BlockingQueue<Ship> queueOfShips, BlockingQueue<Pier> queueOfPiersForBigShips,
                    BlockingQueue<Pier> queueOfPiersForSmallShips, BlockingQueue<Pier> queueOfPiersForMedShips) {
