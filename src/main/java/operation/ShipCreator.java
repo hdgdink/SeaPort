@@ -42,7 +42,7 @@ public class ShipCreator extends Thread {
             rnd = (int) (Math.random() * max);
             typeRnd = (int) (Math.random() * maxForString);
             System.out.println("New Ship on horizont");
-            ship = new Ship("ship " + rnd, listRnd.get(typeRnd), 50);
+            ship = new Ship("ship " + rnd, /*listRnd.get(typeRnd)*/"Big", 50);
             System.out.println(ship.toString());
 
             try {

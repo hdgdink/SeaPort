@@ -10,13 +10,13 @@ import java.util.concurrent.BlockingQueue;
  */
 public class Customs extends Thread {
 
-    private Ship currentShip=null;
-    private Pier currentPier=null;
+    private Ship currentShip = null;
+    private Pier currentPier = null;
     private int quantityOfShips;
-    private BlockingQueue<Ship> queueOfShips=null;
-    private BlockingQueue<Pier> queueOfPiersForBigShips=null;
-    private BlockingQueue<Pier> queueOfPiersForSmallShips=null;
-    private BlockingQueue<Pier> queueOfPiersForMedShips=null;
+    private BlockingQueue<Ship> queueOfShips = null;
+    private BlockingQueue<Pier> queueOfPiersForBigShips = null;
+    private BlockingQueue<Pier> queueOfPiersForSmallShips = null;
+    private BlockingQueue<Pier> queueOfPiersForMedShips = null;
 
 
     @Override
@@ -28,10 +28,10 @@ public class Customs extends Thread {
                     if (currentShip.getShipType() == "Big") {
                         if (!(queueOfPiersForBigShips.isEmpty())) {
                             currentPier = queueOfPiersForBigShips.poll();
-                            System.out.println("Unloading starting.. " + currentShip.getShipName() + " on pierID " + currentPier.getPierId());
+
+                                    new Unloader(currentShip,currentPier).start();
                             try {
-                                Thread.sleep(2000);
-                                System.out.println(currentShip.getShipName() + " unloaded");
+
                                 queueOfPiersForBigShips.put(currentPier);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
@@ -45,7 +45,8 @@ public class Customs extends Thread {
                     if (currentShip.getShipType() == "Medium") {
                         if (!(queueOfPiersForMedShips.isEmpty())) {
                             currentPier = queueOfPiersForMedShips.poll();
-                            System.out.println("Unloading starting.. " + currentShip.getShipName() + " on pierID " + currentPier.getPierId());
+                            System.out.println("Unloading starting.. " + currentShip.getShipName() + " on pier "
+                                    + currentPier.getPierType() + " #" + currentPier.getPierId());
                             try {
                                 Thread.sleep(2000);
                                 System.out.println(currentShip.getShipName() + " unloaded");
@@ -62,7 +63,8 @@ public class Customs extends Thread {
                     if (currentShip.getShipType() == "Small") {
                         if (!(queueOfPiersForSmallShips.isEmpty())) {
                             currentPier = queueOfPiersForSmallShips.poll();
-                            System.out.println("Unloading starting.. " + currentShip.getShipName() + " on pierID " + currentPier.getPierId());
+                            System.out.println("Unloading starting.. " + currentShip.getShipName() + " on pier "
+                                    + currentPier.getPierType() + " #" + currentPier.getPierId());
                             try {
                                 Thread.sleep(2000);
                                 System.out.println(currentShip.getShipName() + " unloaded");
