@@ -31,12 +31,12 @@ public class PortCreator extends Thread {
         queueOfPiersForMedShips = new ArrayBlockingQueue<Pier>(CAPACITY_OF_QUEUE);
         queueOfPiersForSmallShips = new ArrayBlockingQueue<Pier>(CAPACITY_OF_QUEUE);
         seaPort.setPortName(NAME_OF_PORT);
-        pierForBigShipFirst = new Pier(1, true, 3, "For Big");
-        pierForBigShipSecond = new Pier(2, true, 2, "For Big");
-        pierForMediumShipFirst = new Pier(1, true, 3, "For Medium");
-        pierForMediumShipSecond = new Pier(2, true, 3, "For Medium");
-        pierForBoardFirst = new Pier(1, true, 3, "For Boards");
-        pierForBoardSecond = new Pier(2, true, 3, "For Boards");
+        pierForBigShipFirst = new Pier(1, true, 17, "For Big");
+        pierForBigShipSecond = new Pier(2, true, 26, "For Big");
+        pierForMediumShipFirst = new Pier(1, true, 12, "For Medium");
+        pierForMediumShipSecond = new Pier(2, true, 23, "For Medium");
+        pierForBoardFirst = new Pier(1, true, 10, "For Boards");
+        pierForBoardSecond = new Pier(2, true, 12, "For Boards");
 
         try {
             queueOfPiersForBigShips.put(pierForBigShipFirst);

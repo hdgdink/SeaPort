@@ -42,14 +42,15 @@ public class ShipCreator extends Thread {
             rnd = (int) (Math.random() * max);
             typeRnd = (int) (Math.random() * maxForString);
             System.out.println("New Ship on horizont");
-            ship = new Ship("ship " + rnd, /*listRnd.get(typeRnd)*/"Big", 50);
+            ship = new Ship("ship " + rnd, listRnd.get(typeRnd), 50);
             System.out.println(ship.toString());
 
             try {
                 queueOfShips.put(ship);
-                Thread.sleep(1000);
+
                 new Customs(queueOfShips, queueOfPiersForBigShips, queueOfPiersForMedShips, queueOfPiersForSmallShips
                         , quantityOfShips).start();
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
