@@ -2,19 +2,29 @@ package kz.javalab.operation;
 
 import kz.javalab.entity.Pier;
 import kz.javalab.entity.Ship;
+
 import java.util.concurrent.BlockingQueue;
 
 /**
  * Created by HdgDink on 28.07.2017.
  */
 public class Customs extends Thread {
+    private final String EMPTY = " ";
+    private final String PIER = "Pier ";
+    private final String IS_FREE = " is free now!";
+    private final String UNLOADED = " unloaded";
+    private final String CAPACITY_IS = " capacity is ";
+    private final String PROCESS_OF_UNLOAD = "Process of unloading ";
+    private final String DOTS = ":";
+    private final String UNLOADING_START = "Unloading starting.. ";
+    private final String ON_PIER = " on pier ";
+    private final String NUMBER = " #";
     private final String BIG = "Big";
     private final String MEDIUM = "Medium";
     private final String SMALL = "Small";
     private Ship currentShip = null;
     private Pier currentPier = null;
     private int quantityOfShips;
-    private String shipType;
     private BlockingQueue<Pier> currentQueueOfPiers = null;
     private BlockingQueue<Ship> queueOfShips = null;
     private BlockingQueue<Pier> queueOfPiersForBigShips = null;
@@ -31,14 +41,12 @@ public class Customs extends Thread {
                 if (currentShip != null) {
                     if (currentShip.getShipType() == BIG) {
                         currentQueueOfPiers = queueOfPiersForBigShips;
-
                         try {
                             unloadShip();
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
                     }
-
                     if (currentShip.getShipType() == MEDIUM) {
                         currentQueueOfPiers = queueOfPiersForMedShips;
                         try {
@@ -47,7 +55,6 @@ public class Customs extends Thread {
                             e.printStackTrace();
                         }
                     }
-
                     if (currentShip.getShipType() == SMALL) {
                         currentQueueOfPiers = queueOfPiersForSmallShips;
                         try {
@@ -64,16 +71,16 @@ public class Customs extends Thread {
     private void unloadShip() throws InterruptedException {
         if (!(currentQueueOfPiers.isEmpty())) {
             currentPier = currentQueueOfPiers.poll();
-            System.out.println("Unloading starting.. " + currentShip.getShipName() + " on pier "
-                    + currentPier.getPierType() + " #" + currentPier.getPierId());
+            System.out.println(UNLOADING_START + currentShip.getShipName() + ON_PIER
+                    + currentPier.getPierType() + NUMBER + currentPier.getPierId());
             for (int j = 0; j < currentShip.getShipCapacity(); ) {
-                System.out.println("Process of unloading " + currentShip.getShipName() +
-                        " capacity is " + currentShip.getShipCapacity());
+                System.out.println(PROCESS_OF_UNLOAD + currentShip.getShipName() + DOTS +
+                        CAPACITY_IS + currentShip.getShipCapacity());
                 currentShip.setShipCapacity(currentShip.getShipCapacity() - currentPier.getSpeedOfUnloading());
                 Thread.sleep(1000);
             }
-            System.out.println(currentShip.getShipType() + " " + currentShip.getShipName() + " unloaded");
-            System.out.println("Pier " + currentPier.getPierType() + " #" + currentPier.getPierId() + " is free now!");
+            System.out.println(currentShip.getShipType() + EMPTY + currentShip.getShipName() + UNLOADED);
+            System.out.println(PIER + currentPier.getPierType() + NUMBER + currentPier.getPierId() + IS_FREE);
             currentQueueOfPiers.put(currentPier);
         } else queueOfShips.put(currentShip);
     }

@@ -18,10 +18,6 @@ public class Ship {
         return shipName;
     }
 
-    public void setShipName(String shipName) {
-        this.shipName = shipName;
-    }
-
     public String getShipType() {
         return shipType;
     }
