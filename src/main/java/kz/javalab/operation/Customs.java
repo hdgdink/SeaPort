@@ -1,4 +1,4 @@
-package operation;
+package kz.javalab.operation;
 
 import kz.javalab.entity.Pier;
 import kz.javalab.entity.Ship;
