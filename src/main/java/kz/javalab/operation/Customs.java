@@ -28,9 +28,11 @@ public class Customs extends Thread {
                     if (currentShip.getShipType() == "Big") {
                         if (!(queueOfPiersForBigShips.isEmpty())) {
                             currentPier = queueOfPiersForBigShips.poll();
-
-                                    new Unloader(currentShip,currentPier).start();
+                            System.out.println("Unloading starting.. " + currentShip.getShipName() + " on pier "
+                                    + currentPier.getPierType() + " #" + currentPier.getPierId());
                             try {
+                                Thread.sleep(2000);
+                                System.out.println(currentShip.getShipName() + " unloaded");
 
                                 queueOfPiersForBigShips.put(currentPier);
                             } catch (InterruptedException e) {
