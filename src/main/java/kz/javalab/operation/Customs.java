@@ -34,7 +34,6 @@ public class Customs extends Thread {
 
     @Override
     public void run() {
-
         for (int i = 0; i <= quantityOfShips; i++) {
             if (!(queueOfShips.isEmpty())) {
                 currentShip = queueOfShips.poll();

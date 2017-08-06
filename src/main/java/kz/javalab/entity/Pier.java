@@ -4,7 +4,6 @@ package kz.javalab.entity;
  * Created by HdgDink on 28.07.2017.
  */
 public class Pier {
-
     private int pierId;
     private int speedOfUnloading;
     private String pierType;
